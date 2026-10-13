@@ -22,7 +22,10 @@ public static class MauiProgram
 		builder.Services.AddSingleton(
 			new DatabaseService(dbPath)
 		);
-		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<MetricasPage>();
+		builder.Services.AddTransient<VentasPage>();
+		builder.Services.AddTransient<GananciasPage>();
 		return builder.Build();
 	}
 }

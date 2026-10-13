@@ -6,12 +6,14 @@
     Title="Limpieza a granel"
     BackgroundColor="{AppThemeBinding Light=#F4F5FA, Dark=#121212}">
 
+
     <ContentPage.Resources>
         <ResourceDictionary>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ScrollView>
+        
         <VerticalStackLayout Padding="20" Spacing="20">
 
             <!-- Encabezado -->
@@ -202,5 +204,4 @@
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

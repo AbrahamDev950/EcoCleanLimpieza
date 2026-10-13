@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MiniInventario.MetricasPage"
+    Title="Métricas"
+    BackgroundColor="{AppThemeBinding Light=#F4F5FA, Dark=#121212}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+
+            <Border Padding="20" StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                <VerticalStackLayout>
+                    <Label Text="PRODUCTOS" Style="{StaticResource EtiquetaCampo}" />
+                    <Label x:Name="TotalProductosLabel" FontSize="28" FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                <VerticalStackLayout>
+                    <Label Text="VALOR DEL INVENTARIO (COMPRA)" Style="{StaticResource EtiquetaCampo}" />
+                    <Label x:Name="ValorInventarioLabel" FontSize="28" FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                <VerticalStackLayout>
+                    <Label Text="GANANCIA POTENCIAL" Style="{StaticResource EtiquetaCampo}" />
+                    <Label x:Name="GananciaLabel" FontSize="28" FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                <VerticalStackLayout>
+                    <Label Text="PRODUCTOS SIN STOCK" Style="{StaticResource EtiquetaCampo}" />
+                    <Label x:Name="SinStockLabel" FontSize="28" FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -54,5 +54,14 @@
 	  <Compile Update="EditarProductoPage.cs">
 	    <DependentUpon>EditarProductoPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="MetricasGeneralPage.cs">
+	    <DependentUpon>MetricasGeneralPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="AppShell.cs">
+	    <DependentUpon>AppShell.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="GananciasPage.cs">
+	    <DependentUpon>GananciasPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 </Project>

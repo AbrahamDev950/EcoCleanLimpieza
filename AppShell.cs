@@ -1,4 +1,4 @@
-﻿namespace MiniInventario;
+namespace MiniInventario;
 
 public partial class AppShell : Shell
 {

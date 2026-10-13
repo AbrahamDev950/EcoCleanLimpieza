@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MiniInventario.VentasPage"
+    Title="Ventas"
+    BackgroundColor="{AppThemeBinding Light=#F4F5FA, Dark=#121212}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Border Padding="20" StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                <VerticalStackLayout Spacing="14">
+
+                    <Label Text="Nueva venta" FontSize="18" FontAttributes="Bold" />
+
+                    <VerticalStackLayout>
+                        <Label Text="PRODUCTO" Style="{StaticResource EtiquetaCampo}" />
+                        <Border Style="{StaticResource CampoBorde}">
+                            <Picker x:Name="ProductoPicker"
+                                    Title="Selecciona un producto"
+                                    ItemDisplayBinding="{Binding Nombre}"
+                                    SelectedIndexChanged="OnProductoChanged" />
+                        </Border>
+                        <Label x:Name="StockLabel" FontSize="13" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="CANTIDAD VENDIDA" Style="{StaticResource EtiquetaCampo}" />
+                        <Border Style="{StaticResource CampoBorde}">
+                            <Entry x:Name="CantidadEntry" Style="{StaticResource CampoEntry}"
+                                   Keyboard="Numeric" Placeholder="Ej. 2" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Button Text="Registrar venta" Clicked="OnRegistrarClicked"
+                            BackgroundColor="{StaticResource Acento}" TextColor="White"
+                            FontAttributes="Bold" HeightRequest="50" CornerRadius="14" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Ventas recientes" FontSize="20" FontAttributes="Bold" />
+
+            <CollectionView x:Name="VentasCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="16" Margin="0,6" StrokeThickness="0" StrokeShape="RoundRectangle 16"
+                                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="{Binding ProductoNombre}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding Cantidad, StringFormat='Cantidad: {0}'}" FontSize="14" />
+                                <Label Text="{Binding Fecha, StringFormat='{0:dd/MM/yyyy HH:mm}'}" FontSize="12" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

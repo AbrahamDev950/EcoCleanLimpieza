@@ -58,11 +58,41 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
+[/home/abraham/Documentos/Proyectos/MiniInventario/MiniInventario/GananciasPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MiniInventario.GananciasPage.xaml
+build_metadata.AdditionalFiles.TargetPath = GananciasPage.xaml
+build_metadata.AdditionalFiles.RelativePath = GananciasPage.xaml
+build_metadata.AdditionalFiles.Inflator = Runtime
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
 [/home/abraham/Documentos/Proyectos/MiniInventario/MiniInventario/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MiniInventario.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+build_metadata.AdditionalFiles.Inflator = Runtime
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[/home/abraham/Documentos/Proyectos/MiniInventario/MiniInventario/MetricasGeneralPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MiniInventario.MetricasGeneralPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MetricasGeneralPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MetricasGeneralPage.xaml
+build_metadata.AdditionalFiles.Inflator = Runtime
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[/home/abraham/Documentos/Proyectos/MiniInventario/MiniInventario/MetricasTopPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MiniInventario.MetricasTopPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MetricasTopPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MetricasTopPage.xaml
 build_metadata.AdditionalFiles.Inflator = Runtime
 build_metadata.AdditionalFiles.NoWarn = 
 build_metadata.AdditionalFiles.EnableDiagnostics = 
@@ -83,6 +113,16 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MiniInventario.Resources.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources/Styles.xaml
+build_metadata.AdditionalFiles.Inflator = Runtime
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[/home/abraham/Documentos/Proyectos/MiniInventario/MiniInventario/VentasPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MiniInventario.VentasPage.xaml
+build_metadata.AdditionalFiles.TargetPath = VentasPage.xaml
+build_metadata.AdditionalFiles.RelativePath = VentasPage.xaml
 build_metadata.AdditionalFiles.Inflator = Runtime
 build_metadata.AdditionalFiles.NoWarn = 
 build_metadata.AdditionalFiles.EnableDiagnostics = 

@@ -131,6 +131,7 @@ public partial class MainPage : ContentPage
             await DisplayAlert("Error", $"No se pudo guardar el producto: {ex.Message}", "OK");
             return;
         }
+        await DisplayAlert("Éxito", "Producto agregado correctamente.", "OK");
 
         NombreEntry.Text = string.Empty;
         PrecioCompraEntry.Text = string.Empty;

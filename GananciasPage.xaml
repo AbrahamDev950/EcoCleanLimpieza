@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MiniInventario.GananciasPage"
+    Title="Ganancias"
+    BackgroundColor="{AppThemeBinding Light=#F4F5FA, Dark=#121212}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Periodo -->
+            <VerticalStackLayout>
+                <Label Text="PERIODO" Style="{StaticResource EtiquetaCampo}" />
+                <Border Style="{StaticResource CampoBorde}">
+                    <Picker x:Name="PeriodoPicker" SelectedIndexChanged="OnPeriodoChanged" />
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Ganancia total -->
+            <Border Padding="20" StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                <VerticalStackLayout>
+                    <Label Text="GANANCIA TOTAL" Style="{StaticResource EtiquetaCampo}" />
+                    <Label x:Name="GananciaLabel" FontSize="34" FontAttributes="Bold" />
+                    <Label x:Name="MargenLabel" FontSize="14"
+                           TextColor="{AppThemeBinding Light=#6B7280, Dark=#A0A0A0}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Desglose -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+
+                <Border Grid.Row="0" Grid.Column="0" Padding="16" StrokeThickness="0" StrokeShape="RoundRectangle 16"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                    <VerticalStackLayout>
+                        <Label Text="INGRESOS" Style="{StaticResource EtiquetaCampo}" />
+                        <Label x:Name="IngresosLabel" FontSize="20" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="0" Grid.Column="1" Padding="16" StrokeThickness="0" StrokeShape="RoundRectangle 16"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                    <VerticalStackLayout>
+                        <Label Text="COSTO" Style="{StaticResource EtiquetaCampo}" />
+                        <Label x:Name="CostoLabel" FontSize="20" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0" Padding="16" StrokeThickness="0" StrokeShape="RoundRectangle 16"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                    <VerticalStackLayout>
+                        <Label Text="VENTAS" Style="{StaticResource EtiquetaCampo}" />
+                        <Label x:Name="NumVentasLabel" FontSize="20" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="1" Padding="16" StrokeThickness="0" StrokeShape="RoundRectangle 16"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                    <VerticalStackLayout>
+                        <Label Text="UNIDADES" Style="{StaticResource EtiquetaCampo}" />
+                        <Label x:Name="UnidadesLabel" FontSize="20" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Destacados -->
+            <Border Padding="16" StrokeThickness="0" StrokeShape="RoundRectangle 16"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                <VerticalStackLayout Spacing="10">
+                    <VerticalStackLayout>
+                        <Label Text="MÁS VENDIDO" Style="{StaticResource EtiquetaCampo}" />
+                        <Label x:Name="MasVendidoLabel" FontSize="16" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label Text="MÁS RENTABLE" Style="{StaticResource EtiquetaCampo}" />
+                        <Label x:Name="MasRentableLabel" FontSize="16" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Ranking de productos -->
+            <Label Text="Productos más vendidos" FontSize="20" FontAttributes="Bold" />
+
+            <CollectionView x:Name="TopCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="16" Margin="0,6" StrokeThickness="0" StrokeShape="RoundRectangle 16"
+                                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                            <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto,Auto"
+                                  ColumnSpacing="12" RowSpacing="4">
+
+                                <Label Grid.RowSpan="2" Grid.Column="0"
+                                       Text="{Binding Posicion, StringFormat='#{0}'}"
+                                       FontSize="18" FontAttributes="Bold" VerticalOptions="Center"
+                                       TextColor="{StaticResource Acento}" />
+
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Nombre}" FontAttributes="Bold" FontSize="16" />
+
+                                <Label Grid.Row="0" Grid.Column="2"
+                                       Text="{Binding Ganancia, StringFormat='{0:C}'}"
+                                       FontAttributes="Bold" TextColor="#10B981" />
+
+                                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                       Text="{Binding Unidades, StringFormat='{0} unidades vendidas'}"
+                                       FontSize="13"
+                                       TextColor="{AppThemeBinding Light=#6B7280, Dark=#A0A0A0}" />
+
+                                <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                                             Progress="{Binding Proporcion}"
+                                             ProgressColor="{StaticResource Acento}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Por día -->
+            <Label Text="Ganancia por día" FontSize="20" FontAttributes="Bold" />
+
+            <CollectionView x:Name="DiasCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="16" Margin="0,6" StrokeThickness="0" StrokeShape="RoundRectangle 16"
+                                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="4">
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Fecha}" FontAttributes="Bold" />
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Ganancia, StringFormat='{0:C}'}"
+                                       FontAttributes="Bold" TextColor="#10B981" />
+                                <Label Grid.Row="1" Grid.ColumnSpan="2"
+                                       Text="{Binding Ventas, StringFormat='{0} ventas'}" FontSize="13"
+                                       TextColor="{AppThemeBinding Light=#6B7280, Dark=#A0A0A0}" />
+                                <ProgressBar Grid.Row="2" Grid.ColumnSpan="2"
+                                             Progress="{Binding Proporcion}"
+                                             ProgressColor="#10B981" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label x:Name="VacioLabel" Text="No hay ventas en este periodo."
+                   IsVisible="False" HorizontalOptions="Center"
+                   TextColor="{AppThemeBinding Light=#6B7280, Dark=#A0A0A0}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
