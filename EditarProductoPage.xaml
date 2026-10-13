@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MiniInventario.EditarProductoPage"
+    Title="Editar producto"
+    BackgroundColor="{AppThemeBinding Light=#F4F5FA, Dark=#121212}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Border
+                Padding="20"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 20"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+
+                <VerticalStackLayout Spacing="14">
+
+                    <VerticalStackLayout>
+                        <Label Text="NOMBRE DEL PRODUCTO" Style="{StaticResource EtiquetaCampo}" />
+                        <Border Style="{StaticResource CampoBorde}">
+                            <Entry x:Name="NombreEntry" Style="{StaticResource CampoEntry}" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="PRECIO VENTA" Style="{StaticResource EtiquetaCampo}" />
+                            <Border Style="{StaticResource CampoBorde}">
+                                <Entry x:Name="PrecioVentaEntry" Style="{StaticResource CampoEntry}" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="PRECIO COMPRA" Style="{StaticResource EtiquetaCampo}" />
+                            <Border Style="{StaticResource CampoBorde}">
+                                <Entry x:Name="PrecioCompraEntry" Style="{StaticResource CampoEntry}" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <VerticalStackLayout>
+                        <Label Text="CANTIDAD" Style="{StaticResource EtiquetaCampo}" />
+                        <Border Style="{StaticResource CampoBorde}">
+                            <Entry x:Name="CantidadEntry" Style="{StaticResource CampoEntry}" Keyboard="Numeric" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Button
+                        Text="Guardar cambios"
+                        Clicked="OnGuardarClicked"
+                        BackgroundColor="{StaticResource Acento}"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HeightRequest="50"
+                        CornerRadius="14"
+                        Margin="0,6,0,0" />
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

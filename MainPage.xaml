@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MiniInventario.MainPage"
+    Title="Limpieza a granel"
+    BackgroundColor="{AppThemeBinding Light=#F4F5FA, Dark=#121212}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Encabezado -->
+            <VerticalStackLayout Spacing="2">
+                <Label
+                    Text="Inventario"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    TextColor="{AppThemeBinding Light=#1F2937, Dark=#FFFFFF}" />
+                <Label
+                    Text="Registra y consulta tus productos"
+                    FontSize="14"
+                    TextColor="{AppThemeBinding Light=#6B7280, Dark=#A0A0A0}" />
+            </VerticalStackLayout>
+
+            <!-- Tarjeta del formulario -->
+            <Border
+                Padding="20"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 20"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.08" Radius="16" Offset="0,6" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="14">
+
+                    <Label Text="Nuevo producto" FontSize="18" FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#1F2937, Dark=#FFFFFF}" />
+
+                    <!-- Nombre -->
+                    <VerticalStackLayout>
+                        <Label Text="NOMBRE DEL PRODUCTO" Style="{StaticResource EtiquetaCampo}" />
+                        <Border Style="{StaticResource CampoBorde}">
+                            <Entry x:Name="NombreEntry"
+                                   Style="{StaticResource CampoEntry}"
+                                   Placeholder="Ej. Jabón líquido" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Precio y Cantidad lado a lado -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="Precio Venta" Style="{StaticResource EtiquetaCampo}" />
+                            <Border Style="{StaticResource CampoBorde}">
+                                <Entry x:Name="PrecioVentaEntry"
+                                       Style="{StaticResource CampoEntry}"
+                                       Placeholder="Ej. 35.50"
+                                       Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Precio Compra" Style="{StaticResource EtiquetaCampo}" />
+                            <Border Style="{StaticResource CampoBorde}">
+                                <Entry x:Name="PrecioCompraEntry"
+                                       Style="{StaticResource CampoEntry}"
+                                       Placeholder="Ej. 25.00"
+                                       Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="CANTIDAD" Style="{StaticResource EtiquetaCampo}" />
+                            <Border Style="{StaticResource CampoBorde}">
+                                <Entry x:Name="CantidadEntry"
+                                       Style="{StaticResource CampoEntry}"
+                                       Placeholder="Ej. 10"
+                                       Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- ~1~ Campos extra para llenar después @1@ -->
+                    <!-- <VerticalStackLayout> -->
+                    <!--     <Label Text="CATEGORÍA" Style="{StaticResource EtiquetaCampo}" /> -->
+                    <!--     <Border Style="{StaticResource CampoBorde}"> -->
+                    <!--         <Entry x:Name="CategoriaEntry" -->
+                    <!--                Style="{StaticResource CampoEntry}" -->
+                    <!--                Placeholder="Ej. Limpieza" /> -->
+                    <!--     </Border> -->
+                    <!-- </VerticalStackLayout> -->
+                    <!-- -->
+                    <!-- <VerticalStackLayout> -->
+                    <!--     <Label Text="NOTAS" Style="{StaticResource EtiquetaCampo}" /> -->
+                    <!--     <Border Style="{StaticResource CampoBorde}"> -->
+                    <!--         <Entry x:Name="NotasEntry" -->
+                    <!--                Style="{StaticResource CampoEntry}" -->
+                    <!--                Placeholder="Ej. Proveedor, observaciones..." /> -->
+                    <!--     </Border> -->
+                    <!-- </VerticalStackLayout> -->
+
+                    <Button
+                        Text="Agregar producto"
+                        Clicked="OnAgregarClicked"
+                        BackgroundColor="{StaticResource Acento}"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HeightRequest="50"
+                        CornerRadius="14"
+                        Margin="0,6,0,0" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Lista -->
+            <Label
+                Text="Productos registrados"
+                FontSize="20"
+                FontAttributes="Bold"
+                TextColor="{AppThemeBinding Light=#1F2937, Dark=#FFFFFF}" />
+
+           <CollectionView x:Name="ProductosCollection">
+    <CollectionView.ItemTemplate>
+        <DataTemplate>
+            <Border
+                Padding="16"
+                Margin="0,6"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 16"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.06" Radius="10" Offset="0,3" />
+                </Border.Shadow>
+
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="4">
+
+                    <!-- Fila 0: Nombre y Precio de Venta -->
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18"
+                           TextColor="{AppThemeBinding Light=#1F2937, Dark=#FFFFFF}" />
+
+                    <Label Grid.Row="0" Grid.Column="1"
+                           Text="{Binding PrecioVenta, StringFormat='${0:F2}'}"
+                           FontAttributes="Bold" FontSize="18"
+                           TextColor="{StaticResource Acento}" />
+
+                    <!-- Fila 1: Precio de Compra -->
+                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                           Text="{Binding PrecioCompra, StringFormat='Precio de compra: ${0:F2}'}"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#6B7280, Dark=#A0A0A0}" />
+
+                    <!-- Fila 2: Stock actual -->
+                    <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                           Text="{Binding Cantidad, StringFormat='Stock actual: {0}'}"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#6B7280, Dark=#A0A0A0}" />
+
+                    <!-- Fila 3: Botones de Acción (Organizados lado a lado) -->
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                          ColumnDefinitions="*,*"
+                          ColumnSpacing="8"
+                          Margin="0,8,0,0">
+
+                        <!-- Botón Editar -->
+                        <Button Grid.Column="0"
+                                Text="Editar"
+                                Clicked="OnEditarClicked"
+                                BackgroundColor="Transparent"
+                                TextColor="{StaticResource Acento}"
+                                BorderColor="{StaticResource Acento}"
+                                BorderWidth="1"
+                                FontAttributes="Bold"
+                                HeightRequest="42"
+                                CornerRadius="12" />
+
+                        <!-- Botón Eliminar (Rojo) -->
+                        <Button Grid.Column="1"
+                                Text="Eliminar"
+                                Clicked="OnEliminarClicked"
+                                BackgroundColor="Transparent"
+                                TextColor="#EF4444"
+                                BorderColor="#EF4444"
+                                BorderWidth="1"
+                                FontAttributes="Bold"
+                                HeightRequest="42"
+                                CornerRadius="12" />
+                           </Grid>
+                         </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
