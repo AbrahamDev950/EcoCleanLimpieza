@@ -1,4 +1,5 @@
-﻿namespace MiniInventario;
+﻿#nullable enable
+namespace MiniInventario;
 
 public partial class App : Application
 {

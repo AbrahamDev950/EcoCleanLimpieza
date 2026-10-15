@@ -1,4 +1,4 @@
-<api type="debug" assembly-name="MiniInventario" mvid="781f5e23ff09496e96f8e9aef8c31003">
+<api type="debug" assembly-name="MiniInventario" mvid="552f83cf89b84a5da6bfb713e0616621">
   <java-to-managed>
     <entry java-name="crc64a80965d1869d8d4f/MainActivity" managed-name="MiniInventario.MainActivity, MiniInventario" managed-type-token-id="33554445" />
     <entry java-name="crc64a80965d1869d8d4f/MainApplication" managed-name="MiniInventario.MainApplication, MiniInventario" managed-type-token-id="33554446" />

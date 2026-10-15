@@ -11,8 +11,8 @@ public class Venta
     public int ProductoId { get; set; }
 
     public string ProductoNombre { get; set; } = string.Empty;
-    public int Cantidad { get; set; }
-    public decimal PrecioVenta { get; set; }
-    public decimal PrecioCompra { get; set; }
+    public float Cantidad { get; set; }
+    public float PrecioVenta { get; set; }
+    public float PrecioCompra { get; set; }
     public DateTime Fecha { get; set; }
 }

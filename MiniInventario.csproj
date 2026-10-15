@@ -11,7 +11,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>MiniInventario</ApplicationTitle>
+		<ApplicationTitle>EcoClean</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.miniinventario</ApplicationId>
@@ -31,11 +31,14 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\appicon.png" ForegroundFile="Resources\appicon.png" ForegroundScale="0.65" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" BaseSize="128,128" />
-
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\splashscreen.png"
+						  BaseSize=",512"
+						  Resize="true"
+						  Color="#FFFFFF" />
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />

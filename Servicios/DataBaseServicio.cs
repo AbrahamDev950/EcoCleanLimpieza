@@ -21,8 +21,30 @@ public class DatabaseService
 
     private void EnsureProductoTableSchema()
     {
-        // ... sin cambios ...
+        var columns = _database.QueryAsync<TableInfo>("PRAGMA table_info('Producto')").GetAwaiter().GetResult();
+        bool hasDescripcion = columns.Any(c => c.Name == nameof(Producto.Descripcion));
+        bool hasUnidadMedicion = columns.Any(c => c.Name == nameof(Producto.UnidadMedicion));
+
+        if (hasDescripcion && hasUnidadMedicion)
+        {
+            return;
+        }
+
+        try
+        {
+            _database.ExecuteAsync("ALTER TABLE Producto RENAME TO Producto_Old").Wait();
+            _database.CreateTableAsync<Producto>().Wait();
+            _database.ExecuteAsync(
+                "INSERT INTO Producto (Id, Nombre, Descripcion, PrecioVenta, PrecioCompra, Cantidad, UnidadMedicion) " +
+                "SELECT Id, Nombre, '', PrecioVenta, PrecioCompra, Cantidad, '' FROM Producto_Old").Wait();
+            _database.ExecuteAsync("DROP TABLE Producto_Old").Wait();
+        }
+        catch
+        {
+            _database.CreateTableAsync<Producto>().Wait();
+        }
     }
+
 
     public Task<List<Producto>> ObtenerProductosAsync()
     {
@@ -48,7 +70,7 @@ public class DatabaseService
 
     // ---------- NUEVO: ventas ----------
 
-    public Task RegistrarVentaAsync(int productoId, int cantidad)
+    public Task RegistrarVentaAsync(int productoId, float cantidad)
     {
         return _database.RunInTransactionAsync(conn =>
         {

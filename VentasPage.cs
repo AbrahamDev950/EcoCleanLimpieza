@@ -29,7 +29,7 @@ public partial class VentasPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", ex.Message, "OK");
+            await DisplayAlertAsync("Error", ex.Message, "OK");
         }
     }
 
@@ -44,13 +44,13 @@ public partial class VentasPage : ContentPage
     {
         if (ProductoPicker.SelectedItem is not Producto producto)
         {
-            await DisplayAlert("Validación", "Selecciona un producto.", "OK");
+            await DisplayAlertAsync("Validación", "Selecciona un producto.", "OK");
             return;
         }
 
-        if (!int.TryParse(CantidadEntry.Text, out int cantidad) || cantidad <= 0)
+        if (!float.TryParse(CantidadEntry.Text, out float cantidad) || cantidad <= 0)
         {
-            await DisplayAlert("Validación", "Introduce una cantidad válida.", "OK");
+            await DisplayAlertAsync("Validación", "Introduce una cantidad válida.", "OK");
             return;
         }
 
@@ -60,16 +60,16 @@ public partial class VentasPage : ContentPage
         }
         catch (InvalidOperationException ex)
         {
-            await DisplayAlert("No se pudo registrar", ex.Message, "OK");
+            await DisplayAlertAsync("No se pudo registrar", ex.Message, "OK");
             return;
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", ex.Message, "OK");
+            await DisplayAlertAsync("Error", ex.Message, "OK");
             return;
         }
 
-        await DisplayAlert("Éxito", "Venta registrada correctamente.", "OK");
+        await DisplayAlertAsync("Éxito", "Venta registrada correctamente.", "OK");
 
         CantidadEntry.Text = string.Empty;
         await CargarAsync();

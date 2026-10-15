@@ -15,13 +15,13 @@ public class Producto
     public string Descripcion { get; set; } = string.Empty;
 
     [Required]
-    public decimal PrecioVenta { get; set; }
+    public float PrecioVenta { get; set; }
 
     [Required]
-    public decimal PrecioCompra { get; set; }
+    public float PrecioCompra { get; set; }
 
     [Required]
-    public int Cantidad { get; set; }
+    public float Cantidad { get; set; }
 
     [Required]
     public string UnidadMedicion { get; set; } = string.Empty;

@@ -32,28 +32,28 @@ public partial class EditarProductoPage : ContentPage
         if (nombre.Length < 3 || nombre.Length > 50 ||
             !nombre.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
         {
-            await DisplayAlert("Validación", "El nombre debe tener entre 3 y 50 caracteres y solo letras y espacios.", "OK");
+            await DisplayAlertAsync("Validación", "El nombre debe tener entre 3 y 50 caracteres y solo letras y espacios.", "OK");
             return;
         }
 
-        if (!decimal.TryParse(PrecioVentaEntry.Text, NumberStyles.Number,
-                CultureInfo.CurrentCulture, out decimal precioVenta) || precioVenta <= 0)
+        if (!float.TryParse(PrecioVentaEntry.Text, NumberStyles.Number,
+                CultureInfo.CurrentCulture, out float precioVenta) || precioVenta <= 0)
         {
-            await DisplayAlert("Validación", "Introduce un precio de venta válido.", "OK");
+            await DisplayAlertAsync("Validación", "Introduce un precio de venta válido.", "OK");
             return;
         }
 
-        if (!decimal.TryParse(PrecioCompraEntry.Text, NumberStyles.Number,
-                CultureInfo.CurrentCulture, out decimal precioCompra)
+        if (!float.TryParse(PrecioCompraEntry.Text, NumberStyles.Number,
+                CultureInfo.CurrentCulture, out float precioCompra)
             || precioCompra <= 0 || precioCompra > precioVenta)
         {
-            await DisplayAlert("Validación", "El precio de compra debe ser mayor a 0 y no mayor al de venta.", "OK");
+            await DisplayAlertAsync("Validación", "El precio de compra debe ser mayor a 0 y no mayor al de venta.", "OK");
             return;
         }
 
-        if (!int.TryParse(CantidadEntry.Text, out int cantidad) || cantidad < 0)
+        if (!float.TryParse(CantidadEntry.Text, out float cantidad) || cantidad < 0)
         {
-            await DisplayAlert("Validación", "Introduce una cantidad válida.", "OK");
+            await DisplayAlertAsync("Validación", "Introduce una cantidad válida.", "OK");
             return;
         }
 
@@ -70,7 +70,7 @@ public partial class EditarProductoPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"No se pudo guardar el producto: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"No se pudo guardar el producto: {ex.Message}", "OK");
             return;
         }
 

@@ -11,7 +11,7 @@ public partial class MainPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        CargarProductos();
+        _ = CargarProductos();
     }
     
     public MainPage(DatabaseService database)
@@ -19,7 +19,7 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         _database = database;
 
-        CargarProductos();
+        _ = CargarProductos();
     }
 
     private async Task CargarProductos()
@@ -34,7 +34,7 @@ public partial class MainPage : ContentPage
 
         if (producto is null)
         {
-            await DisplayAlert("Error", "No se pudo abrir el producto para editar.", "OK");
+            await DisplayAlertAsync("Error", "No se pudo abrir el producto para editar.", "OK");
             return;
         }
 
@@ -48,11 +48,11 @@ public partial class MainPage : ContentPage
 
         if (producto is null)
         {
-            await DisplayAlert("Error", "No se pudo eliminar el producto.", "OK");
+            await DisplayAlertAsync("Error", "No se pudo eliminar el producto.", "OK");
             return;
         }
 
-        bool confirmacion = await DisplayAlert(
+        bool confirmacion = await DisplayAlertAsync(
             "Confirmación",
             $"¿Estás seguro de que deseas eliminar el producto '{producto.Nombre}'?",
             "Sí",
@@ -67,11 +67,11 @@ public partial class MainPage : ContentPage
         try
         {
             await _database.EliminarProductoAsync(producto);
-            CargarProductos();
+            _ = CargarProductos();
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"No se pudo eliminar el producto: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"No se pudo eliminar el producto: {ex.Message}", "OK");
         }
     }
     private async void OnAgregarClicked(object sender, EventArgs e)
@@ -80,35 +80,35 @@ public partial class MainPage : ContentPage
 
         if (nombre.Length < 3 || nombre.Length > 50 || !nombre.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
         {
-            await DisplayAlert("Validación", "El nombre del producto debe tener entre 3 y 50 caracteres y solo puede contener letras y espacios.", "OK");
+            await DisplayAlertAsync("Validación", "El nombre del producto debe tener entre 3 y 50 caracteres y solo puede contener letras y espacios.", "OK");
             return;
         }
 
-        if (!decimal.TryParse(
+        if (!float.TryParse(
                 PrecioVentaEntry.Text,
                 NumberStyles.Number,
                 CultureInfo.CurrentCulture,
-                out decimal precioVenta)
+                out float precioVenta)
             || precioVenta <= 0)
         {
-            await DisplayAlert("Validación", "Introduce un precio válido.", "OK");
+            await DisplayAlertAsync("Validación", "Introduce un precio válido.", "OK");
             return;
         }
 
-        if (!decimal.TryParse(
+        if (!float.TryParse(
                 PrecioCompraEntry.Text,
                 NumberStyles.Number,
                 CultureInfo.CurrentCulture,
-                out decimal precioCompra)
+                out float precioCompra)
             || precioCompra <= 0 || precioCompra > precioVenta)
         {
-            await DisplayAlert("Validación", "Introduce un precio válido.", "OK");
+            await DisplayAlertAsync("Validación", "Introduce un precio válido.", "OK");
             return;
         }
-        if (!int.TryParse(CantidadEntry.Text, out int cantidad)
+        if (!float.TryParse(CantidadEntry.Text, out float cantidad)
             || cantidad < 0)
         {
-            await DisplayAlert("Validación", "Introduce una cantidad válida.", "OK");
+            await DisplayAlertAsync("Validación", "Introduce una cantidad válida.", "OK");
             return;
         }
 
@@ -128,10 +128,10 @@ public partial class MainPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"No se pudo guardar el producto: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"No se pudo guardar el producto: {ex.Message}", "OK");
             return;
         }
-        await DisplayAlert("Éxito", "Producto agregado correctamente.", "OK");
+        await DisplayAlertAsync("Éxito", "Producto agregado correctamente.", "OK");
 
         NombreEntry.Text = string.Empty;
         PrecioCompraEntry.Text = string.Empty;

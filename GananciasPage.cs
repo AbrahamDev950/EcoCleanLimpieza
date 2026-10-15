@@ -32,7 +32,7 @@ public partial class GananciasPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", ex.Message, "OK");
+            await DisplayAlertAsync("Error", ex.Message, "OK");
         }
     }
 
@@ -52,10 +52,10 @@ public partial class GananciasPage : ContentPage
         var cultura = CultureInfo.CurrentCulture;
 
         // ----- Totales -----
-        decimal ingresos = ventas.Sum(v => v.PrecioVenta * v.Cantidad);
-        decimal costo = ventas.Sum(v => v.PrecioCompra * v.Cantidad);
-        decimal ganancia = ingresos - costo;
-        decimal margen = ingresos > 0 ? ganancia / ingresos : 0;
+        float ingresos = ventas.Sum(v => v.PrecioVenta * v.Cantidad);
+        float costo = ventas.Sum(v => v.PrecioCompra * v.Cantidad);
+        float ganancia = ingresos - costo;
+        float margen = ingresos > 0 ? ganancia / ingresos : 0;
 
         GananciaLabel.Text = ganancia.ToString("C", cultura);
         GananciaLabel.TextColor = ganancia >= 0 ? Color.FromArgb("#10B981") : Color.FromArgb("#EF4444");
@@ -85,7 +85,7 @@ public partial class GananciasPage : ContentPage
             .Take(10)
             .ToList();
 
-        int maxUnidades = top.Count > 0 ? top.Max(p => p.Unidades) : 0;
+        float maxUnidades = top.Count > 0 ? top.Max(p => p.Unidades) : 0;
         for (int i = 0; i < top.Count; i++)
         {
             top[i].Posicion = i + 1;
@@ -115,7 +115,7 @@ public partial class GananciasPage : ContentPage
             })
             .ToList();
 
-        decimal maxDia = porDia.Count > 0 ? porDia.Max(d => d.Ganancia) : 0;
+        float maxDia = porDia.Count > 0 ? porDia.Max(d => d.Ganancia) : 0;
         foreach (var d in porDia)
         {
             d.Proporcion = maxDia > 0 ? Math.Clamp((double)(d.Ganancia / maxDia), 0, 1) : 0;

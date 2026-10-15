@@ -21,8 +21,8 @@ public partial class MetricasPage : ContentPage
         {
             var productos = await _database.ObtenerProductosAsync();
 
-            decimal valorInventario = productos.Sum(p => p.PrecioCompra * p.Cantidad);
-            decimal valorVenta = productos.Sum(p => p.PrecioVenta * p.Cantidad);
+            float valorInventario = productos.Sum(p => p.PrecioCompra * p.Cantidad);
+            float valorVenta = productos.Sum(p => p.PrecioVenta * p.Cantidad);
 
             TotalProductosLabel.Text = productos.Count.ToString();
             ValorInventarioLabel.Text = valorInventario.ToString("C", CultureInfo.CurrentCulture);
@@ -31,7 +31,7 @@ public partial class MetricasPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", ex.Message, "OK");
+            await DisplayAlertAsync("Error", ex.Message, "OK");
         }
     }
 }
